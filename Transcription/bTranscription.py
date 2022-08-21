@@ -13,10 +13,10 @@ from Transcription.process_transcript import readj
 from helper import dirgetcheck
 
 SUBSCRIPTION_KEY = config.api_key
-SERVICE_REGION = "centralindia"
+SERVICE_REGION = "eastus"
 DESCRIPTION = "Lecture Video"
 LOCALE = "en-US"
-container_name = 'forlecture'
+container_name = 'sih-container'
 account_name = config.storage_name
 account_key = config.storage_key
 

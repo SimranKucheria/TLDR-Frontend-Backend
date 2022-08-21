@@ -49,6 +49,9 @@ def upload(ip,db,upload=True):
     elif 'audio' in ip:
         if '.mp3' in ip.split("\\")[-1]:
             blob_name=ip.split("\\")[-1]
+            sound = AudioSegment.from_mp3(os.path.join(dir,blob_name))
+            sound = sound.set_channels(1)
+            sound.export(os.path.join(dir,blob_name), format="mp3")
         else:
             with open(ip, "rb") as file:
                 info = fleep.get(file.read(128))
@@ -56,6 +59,7 @@ def upload(ip,db,upload=True):
             fname = ip.split("\\")[-1][:end]+"mp3"
             nfname = os.path.join(dir,fname)
             audio = AudioSegment.from_file(ip, info.extension[0])
+            audio = audio.set_channels(1)
             audio.export(nfname, format="mp3")
             blob_name = fname
     print(blob_name)

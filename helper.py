@@ -95,7 +95,7 @@ def dirgetcheck(main,sub):
         os.makedirs(dir)
     return dir
 
-def getclusters(data,n_clusters,range=8):
+def getclusters(data,n_clusters,range=5):
     """
     Takes in the baseline and calculates optimal number of clusters.
     Args:

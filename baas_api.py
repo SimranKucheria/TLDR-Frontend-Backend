@@ -81,7 +81,9 @@ async def create_upload_file(file: UploadFile = File(...)):
 async def vsummary(path: Vidpath):
     path = path.dict()
     if( db_path := db.Vimage.find_one({"path": path}) ) is not None:
+        print("HELLO1")
         return JSONResponse(status_code=status.HTTP_201_CREATED, content=parse_json(db_path)['_id']['$oid'])
+    
     ordering,fr,t_chunks = vsum(path['path'],path['v_clusters'])
     item={'path':path,'order':ordering,'fr':fr,'t_chunks':t_chunks}
     response =  db.Vimage.insert_one(vsummaryEntity(item))

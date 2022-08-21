@@ -50,3 +50,17 @@ def report_gen(report_dic,ip,fr):
         except:
             print("no")
     doc.build(Story)
+
+def print_report(ip,text_order):
+    doc = SimpleDocTemplate(os.path.join(os.getcwd(),r'reports\Nptel',ip.split("\\")[-1].split('.')[0]+".pdf"),pagesize=A4,
+                        rightMargin=72,leftMargin=72,
+                        topMargin=72,bottomMargin=18)
+    Story=[]
+    styles=getSampleStyleSheet()
+    styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
+    summ = ''
+    for time,sent in text_order.items():
+                    summ+=sent
+    Story.append(Paragraph(summ, styles["Normal"]))
+    Story.append(Spacer(1, 12))
+    doc.build(Story)

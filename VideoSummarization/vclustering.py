@@ -27,8 +27,9 @@ def get_frame(ip,fr,op):
         
         face_detector_op = face_detector(frame)
         if isinstance(face_detector_op,bool):
+            area_arr.append(face_detector_op)
             continue
-        area_arr.append(face_detector(frame))
+        area_arr.append(face_detector_op)
         run_avg+=area_arr[i]
     run_avg = run_avg/len(area_arr)
     processed_frames = []
@@ -167,10 +168,10 @@ def vsum(ip,n_clusters):
     get_feat(ip,fr,output_file)
     op = np.load(output_file)
     preprocessed_frames,frame_no=get_frame(ip,fr,op)
-    preprocessed_frames = np.array(preprocessed_frames)           
+    preprocessed_frames = np.array(preprocessed_frames) 
     n_clusters = getclusters(preprocessed_frames,n_clusters)
+    print(n_clusters)
     kmeans = KMeans(n_clusters=n_clusters, random_state=0)
-    print(len(preprocessed_frames))
     kmeans = kmeans.fit(preprocessed_frames)
     closest = []
     closest, _ = pairwise_distances_argmin_min(kmeans.cluster_centers_,preprocessed_frames)

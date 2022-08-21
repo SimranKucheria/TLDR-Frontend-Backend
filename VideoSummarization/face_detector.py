@@ -12,7 +12,7 @@ def check_face_loc(img_h,img_w,x,y,w,h):
         return False
 
 def face_detector(img,threshold=0.2):
-    face_cascade = cv2.CascadeClassifier(r'E:\Multi-Modal Summarization\VideoSummarization\face_detector.xml')
+    face_cascade = cv2.CascadeClassifier(r'C:\Users\Jinit Sanghvi\Documents\Multi-ModalSummarization\VideoSummarization\face_detector.xml')
 
     if type(img)==str:
         img = cv2.imread(img)
@@ -31,7 +31,6 @@ def face_detector(img,threshold=0.2):
                 return True
             face_area+=w*h 
         area_occupied = face_area/original_area
-        #print(area_occupied)
         return face_area
             
 
